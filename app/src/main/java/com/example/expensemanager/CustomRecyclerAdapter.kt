@@ -8,8 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.expensemanager.model.Expense
 
-class CustomRecyclerAdapter(private  val expenses: List<Expense>):
+class CustomRecyclerAdapter(/*private  val expenses: List<Expense>*/):
     RecyclerView.Adapter<CustomRecyclerAdapter.MyViewHolder>(){
+
+    private var expenseList = emptyList<Expense>()
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val largeTextView: TextView = itemView.findViewById(R.id.textViewLarge)
@@ -24,9 +26,19 @@ class CustomRecyclerAdapter(private  val expenses: List<Expense>):
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.largeTextView.text = expenses[position].amount.toString()
-        holder.smallTextView.text = expenses[position].category
+       /* holder.largeTextView.text = expenses[position].amount.toString()
+        holder.smallTextView.text = expenses[position].category*/
+        val currentItem = expenseList[position]
+        holder.smallTextView.text = currentItem.amount.toString()
+        holder.largeTextView.text = currentItem.category
+
     }
 
-    override fun getItemCount() = expenses.size
+    fun setData (expenses: List<Expense>) {
+        this.expenseList = expenses
+        notifyDataSetChanged()
+    }
+
+    override fun getItemCount() = expenseList.size
+    //override fun getItemCount() = expenses.size
 }
