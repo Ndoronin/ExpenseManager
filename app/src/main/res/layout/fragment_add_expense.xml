@@ -7,43 +7,123 @@
     android:layout_height="match_parent"
     tools:context=".AddExpenseFragment" >
 
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_check_24"
+        tools:ignore="SpeakableTextPresentCheck"
+        android:contentDescription="@string/add_expense" />
+
+    <nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup
+
+        android:id="@+id/category_button_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:flexWrap="wrap"
+        app:justifyContent="space_between"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:toggle_requiredAmount="1"
+        app:toggle_selectAnimation="circular_reveal"
+        app:toggle_selectableAmount="1">
+
+        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+            android:id="@+id/category_food_and_drinks"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_margin="15dp"
+            app:toggle_selectedBackgroundColor="#03A9F4"
+            app:toggle_text="@string/food_and_drinks" />
+
+        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+            android:id="@+id/category_shopping"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_margin="15dp"
+            app:toggle_selectedBackgroundColor="#FF5722"
+            app:toggle_text="@string/shopping" />
+
+        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+            android:id="@+id/category_transport"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_margin="15dp"
+            app:toggle_selectedBackgroundColor="#673AB7"
+            app:toggle_text="@string/transport" />
+
+        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+            android:id="@+id/category_leisure"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_margin="15dp"
+            app:toggle_selectedBackgroundColor="#009688"
+            app:toggle_text="@string/leisure" />
+
+        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+            android:id="@+id/category_health"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_margin="15dp"
+            app:toggle_selectedBackgroundColor="#E91E63"
+            app:toggle_text="@string/health" />
+
+        <nl.bryanderidder.themedtogglebuttongroup.ThemedButton
+            android:id="@+id/category_utilities"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_margin="15dp"
+            app:toggle_selectedBackgroundColor="#CDDC39"
+            app:toggle_text="@string/utilities" />
+
+    </nl.bryanderidder.themedtogglebuttongroup.ThemedToggleButtonGroup>
+
     <EditText
         android:id="@+id/amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="123dp"
+        android:layout_height="48dp"
         android:ems="10"
+        android:hint="@string/Zero"
+        android:importantForAutofill="no"
         android:inputType="number"
         android:minHeight="48dp"
-        android:hint="@string/amount"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.347"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.275" />
+        app:layout_constraintVertical_bias="0.127"
+        tools:ignore="LabelFor" />
 
-    <EditText
-        android:id="@+id/category"
+    <TextView
+        android:id="@+id/currency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:hint="@string/category"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.383" />
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="88dp"
+        android:text="@string/rub"
+        android:textSize="25sp"
+        app:layout_constraintStart_toEndOf="@+id/amount"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/submitButton"
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/submit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/category" />
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/category"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/category_button_group"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

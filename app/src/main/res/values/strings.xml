@@ -15,6 +15,17 @@
     <string name="category">Category</string>
     <string name="submit">Submit</string>
     <string name="totalExpense">Total: %s</string>
+    <string name="food_and_drinks">Food and drinks</string>
+    <string name="shopping">Shopping</string>
+    <string name="transport">Transport</string>
+    <string name="leisure">Leisure</string>
+    <string name="health">Health</string>
+    <string name="utilities">Utilities</string>
+    <string name="categories">Categories:</string>
+    <string name="rub">RUB</string>
+    <string name="Zero">0</string>
+    <string name="add_expense">Add expense</string>
+    <string name="delete_all">Delete all</string>
 
     <string-array name="cat_names">
         <item>Рыжик</item>

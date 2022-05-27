@@ -31,34 +31,13 @@ class ExpensesViewModel(application: Application): AndroidViewModel(application)
         }
     }
 
-    var expenses = mutableListOf(
-        Expense(3,"Groceries"),
-        Expense(3,"Groceries"),
-        Expense(3,"Groceries"),
-        Expense(3,"Groceries"),
-        Expense(3,"Groceries"),
-        Expense(3,"Groceries"),
-        Expense(3,"Groceries"),
-        Expense(3,"Groceries"),
-        Expense(3,"Groceries"),
-        Expense(3,"Groceries"),
-        Expense(3,"Groceries"),
-        Expense(3,"Groceries"),
-        Expense(3,"Groceries"),
-        Expense(3,"Groceries"),
-        Expense(3,"Groceries"),
-    )
-    /*
-    fun addExpense(exp:Expense) {
-        this.expenses.add(exp)
-    }*/
 
-    fun getTotal() :Int{
-        var total = 0
-        expenses.forEach {
-            total+=it.amount
+    fun deleteAllExpenses(){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteAllExpenses()
         }
-        return total
     }
+
+
 
 }

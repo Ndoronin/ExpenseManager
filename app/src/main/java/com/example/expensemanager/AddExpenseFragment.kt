@@ -18,23 +18,26 @@ class AddExpenseFragment : Fragment(R.layout.fragment_add_expense) {
 
     private val binding: FragmentAddExpenseBinding by viewBinding()
     private val viewModel: ExpensesViewModel by activityViewModels()
+    private var category: String = "Other"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.submitButton.setOnClickListener{
-            //TODO CATCH INT -> EDITTEXT BUGS + SET CATEGORIES
 
+        binding.categoryButtonGroup.setOnSelectListener {
+            category = it.text
+        }
+
+        binding.fabSubmit.setOnClickListener {
             insertExpenseToDatabase()
         }
+
     }
 
     private fun insertExpenseToDatabase(){
         val amount = binding.amount.text.toString()
-        val category = binding.category.text.toString()
 
-        if(inputCheck(amount,category)){
-            // Create User Object
+        if(inputCheck(amount)){
             val expense = Expense(amount.toInt(),category)
             viewModel.addExpense(expense)
             Toast.makeText(requireContext(), "Expense added", Toast.LENGTH_LONG).show()
@@ -44,8 +47,8 @@ class AddExpenseFragment : Fragment(R.layout.fragment_add_expense) {
         }
     }
 
-    fun inputCheck(amount: String, category: String): Boolean{
-        return !(TextUtils.isEmpty(amount) && TextUtils.isEmpty(category))
+    private fun inputCheck(amount: String): Boolean{
+        return !(TextUtils.isEmpty(amount) )
     }
 
 

@@ -12,6 +12,10 @@ interface ExpenseDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addExpense(expense: Expense)
 
+
+    @Query("DELETE FROM expense_table")
+    suspend fun deleteAllExpenses()
+
     @Query("SELECT * FROM expense_table ORDER BY id ASC")
     fun readAllData(): LiveData<List<Expense>>
 }
