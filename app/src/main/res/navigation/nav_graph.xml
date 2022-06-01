@@ -7,21 +7,35 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.example.expensemanager.FirstFragment"
+        android:name="com.example.expensemanager.fragments.FirstFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
 
         <action
             android:id="@+id/action_FirstFragment_to_addExpenseFragment6"
             app:destination="@id/addExpenseFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_expenseEditFragment"
+            app:destination="@id/expenseEditFragment" />
     </fragment>
     <fragment
         android:id="@+id/addExpenseFragment"
-        android:name="com.example.expensemanager.AddExpenseFragment"
+        android:name="com.example.expensemanager.fragments.AddExpenseFragment"
         android:label="fragment_add_expense"
         tools:layout="@layout/fragment_add_expense" >
         <action
             android:id="@+id/action_addExpenseFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/expenseEditFragment"
+        android:name="com.example.expensemanager.fragments.ExpenseEditFragment"
+        android:label="ExpenseEditFragment" >
+        <action
+            android:id="@+id/action_expenseEditFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+        <argument
+            android:name="currentExpense"
+            app:argType="com.example.expensemanager.model.Expense" />
     </fragment>
 </navigation>

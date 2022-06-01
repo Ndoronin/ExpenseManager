@@ -1,4 +1,4 @@
-package com.example.expensemanager
+package com.example.expensemanager.fragments
 
 
 import android.app.AlertDialog
@@ -10,7 +10,9 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.expensemanager.R
 import com.example.expensemanager.databinding.FragmentFirstBinding
+import com.example.expensemanager.fragments.recyclerview.RecyclerAdapter
 import com.example.expensemanager.viewmodel.ExpensesViewModel
 
 
@@ -33,10 +35,8 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
         //recycler view
-        val adapter = CustomRecyclerAdapter()
+        val adapter = RecyclerAdapter()
         binding.recyclerView.layoutManager = LinearLayoutManager(activity)
         binding.recyclerView.adapter = adapter
 
@@ -46,13 +46,11 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
             adapter.setData(expense)
         }
 
-
         //TODO: FIX TOTAL
         binding.total.text = "Total: 0"
         //binding.total.text = getString(R.string.totalExpense,viewModel.getTotal().toString())
 
         binding.fab.setOnClickListener {
-            //TODO:open fix hiding fab
             findNavController().navigate(R.id.action_FirstFragment_to_addExpenseFragment6)
         }
     }

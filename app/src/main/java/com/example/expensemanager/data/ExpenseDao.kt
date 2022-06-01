@@ -1,10 +1,8 @@
-package com.example.expensemanager.model
+package com.example.expensemanager.data
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
+import com.example.expensemanager.model.Expense
 
 @Dao
 interface ExpenseDao {
@@ -18,4 +16,7 @@ interface ExpenseDao {
 
     @Query("SELECT * FROM expense_table ORDER BY id ASC")
     fun readAllData(): LiveData<List<Expense>>
+
+    @Update
+    suspend fun updateExpense(expense: Expense)
 }

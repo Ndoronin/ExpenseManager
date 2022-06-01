@@ -3,11 +3,10 @@ package com.example.expensemanager.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.expensemanager.model.Expense
-import com.example.expensemanager.model.ExpenseDatabase
-import com.example.expensemanager.model.ExpenseRepository
+import com.example.expensemanager.data.ExpenseDatabase
+import com.example.expensemanager.data.ExpenseRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -31,6 +30,11 @@ class ExpensesViewModel(application: Application): AndroidViewModel(application)
         }
     }
 
+    fun updateExpense(expense: Expense){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.updateExpense(expense)
+        }
+    }
 
     fun deleteAllExpenses(){
         viewModelScope.launch(Dispatchers.IO) {

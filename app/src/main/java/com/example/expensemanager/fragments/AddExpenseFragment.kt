@@ -1,4 +1,4 @@
-package com.example.expensemanager
+package com.example.expensemanager.fragments
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -8,6 +8,7 @@ import android.viewbinding.library.fragment.viewBinding
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.example.expensemanager.R
 import com.example.expensemanager.databinding.FragmentAddExpenseBinding
 import com.example.expensemanager.model.Expense
 import com.example.expensemanager.viewmodel.ExpensesViewModel

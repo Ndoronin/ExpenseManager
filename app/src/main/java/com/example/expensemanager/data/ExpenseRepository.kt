@@ -1,6 +1,7 @@
-package com.example.expensemanager.model
+package com.example.expensemanager.data
 
 import androidx.lifecycle.LiveData
+import com.example.expensemanager.model.Expense
 
 class ExpenseRepository(private val expenseDao: ExpenseDao) {
 
@@ -11,5 +12,9 @@ class ExpenseRepository(private val expenseDao: ExpenseDao) {
     }
     suspend fun deleteAllExpenses(){
         expenseDao.deleteAllExpenses()
+    }
+
+    suspend fun updateExpense(expense: Expense){
+        expenseDao.updateExpense(expense)
     }
 }
