@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.expensemanager.R
 import com.example.expensemanager.databinding.FragmentFirstBinding
 import com.example.expensemanager.fragments.recyclerview.RecyclerAdapter
+import com.example.expensemanager.model.Expense
 import com.example.expensemanager.viewmodel.ExpensesViewModel
 
 
@@ -20,7 +21,7 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
 
     private val binding: FragmentFirstBinding by viewBinding()
     private lateinit var viewModel: ExpensesViewModel
-
+    private lateinit var myExpenses: List<Expense>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,14 +42,20 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
         binding.recyclerView.adapter = adapter
 
         //view model
+        var total = 0
         viewModel = ViewModelProvider(this)[ExpensesViewModel::class.java]
-        viewModel.readAllData.observe(viewLifecycleOwner) { expense ->
-            adapter.setData(expense)
-        }
+        viewModel.readAllData.observe(viewLifecycleOwner) { expenses ->
+            adapter.setData(expenses)
+            println(expenses[0].amount)
+            myExpenses = expenses
+            expenses.forEach {
+                total+=it.amount
+            }
 
-        //TODO: FIX TOTAL
-        binding.total.text = "Total: 0"
-        //binding.total.text = getString(R.string.totalExpense,viewModel.getTotal().toString())
+            val totalStr = getString(R.string.totalExpense,total.toString()) +
+                    " " +getString(R.string.Currency)
+            binding.total.text = totalStr
+        }
 
         binding.fab.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_addExpenseFragment6)

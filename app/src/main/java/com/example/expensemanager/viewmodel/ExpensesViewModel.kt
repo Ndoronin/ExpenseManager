@@ -42,6 +42,12 @@ class ExpensesViewModel(application: Application): AndroidViewModel(application)
         }
     }
 
+    fun deleteExpense(expense: Expense){
+        viewModelScope.launch(Dispatchers.IO){
+            repository.deleteExpense(expense)
+        }
+    }
+
 
 
 }
