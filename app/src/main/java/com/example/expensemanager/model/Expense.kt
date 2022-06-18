@@ -14,7 +14,9 @@ data class Expense (
     var id: Int,
     val amount: Int,
     val category: String,
+    val date: String,
+    val note: String
     ):Parcelable
 {
-    constructor(amount: Int,category: String): this(0,amount, category) { }
+    constructor(amount: Int,category: String, date: String,note: String): this(0,amount, category,date,note) { }
 }

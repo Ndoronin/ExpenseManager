@@ -54,7 +54,7 @@ class ExpenseEditFragment: Fragment(R.layout.fragment_expense_edit)  {
         val amount = binding.amount.text.toString()
 
         if(inputCheck(amount)){
-            val expense = Expense(amount.toInt(),category)
+            val expense = Expense(amount.toInt(),category,"","")
             expense.id = args.currentExpense.id
             viewModel.updateExpense(expense)
             Toast.makeText(requireContext(), "Expense updated", Toast.LENGTH_LONG).show()

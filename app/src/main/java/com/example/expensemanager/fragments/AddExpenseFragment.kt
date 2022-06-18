@@ -12,6 +12,9 @@ import com.example.expensemanager.R
 import com.example.expensemanager.databinding.FragmentAddExpenseBinding
 import com.example.expensemanager.model.Expense
 import com.example.expensemanager.viewmodel.ExpensesViewModel
+import com.google.android.material.datepicker.MaterialDatePicker
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class AddExpenseFragment : Fragment(R.layout.fragment_add_expense) {
@@ -20,10 +23,29 @@ class AddExpenseFragment : Fragment(R.layout.fragment_add_expense) {
     private val binding: FragmentAddExpenseBinding by viewBinding()
     private val viewModel: ExpensesViewModel by activityViewModels()
     private var category: String = "Other"
+    private var selectedDate = MaterialDatePicker.todayInUtcMilliseconds()
+    private val simpleDateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.US)
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        binding.editTextDate.setOnClickListener {
+            val today = MaterialDatePicker.todayInUtcMilliseconds()
+            val datePicker =
+                MaterialDatePicker.Builder.datePicker()
+                    .setTitleText("Select date").setSelection(today).build()
+
+            datePicker.addOnPositiveButtonClickListener {
+                selectedDate = datePicker.selection!!
+                val dateString = simpleDateFormat.format(selectedDate)
+                binding.editTextDate.setText(dateString)
+            }
+            datePicker.show(childFragmentManager,"tag")
+
+
+        }
 
         binding.categoryButtonGroup.setOnSelectListener {
             category = it.text
@@ -37,9 +59,8 @@ class AddExpenseFragment : Fragment(R.layout.fragment_add_expense) {
 
     private fun insertExpenseToDatabase(){
         val amount = binding.amount.text.toString()
-
         if(inputCheck(amount)){
-            val expense = Expense(amount.toInt(),category)
+            val expense = Expense(amount.toInt(),category,simpleDateFormat.format(selectedDate),binding.note.text.toString())
             viewModel.addExpense(expense)
             Toast.makeText(requireContext(), "Expense added", Toast.LENGTH_LONG).show()
             findNavController().navigate(R.id.action_addExpenseFragment_to_FirstFragment)

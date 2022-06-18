@@ -27,6 +27,9 @@
     <string name="add_expense">Add expense</string>
     <string name="delete_all">Delete all</string>
     <string name="Currency"> RUB</string>
+    <string name="details">Details</string>
+    <string name="add_a_note">Add a note...</string>
+    <string name="today">Today</string>
 
     <string-array name="cat_names">
         <item>Рыжик</item>
