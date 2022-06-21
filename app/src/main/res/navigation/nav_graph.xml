@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_FirstFragment_to_expenseEditFragment"
             app:destination="@id/expenseEditFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_expensesCategoryFragment"
+            app:destination="@id/expensesCategoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/addExpenseFragment"
@@ -37,5 +40,14 @@
         <argument
             android:name="currentExpense"
             app:argType="com.example.expensemanager.model.Expense" />
+    </fragment>
+    <fragment
+        android:id="@+id/expensesCategoryFragment"
+        android:name="com.example.expensemanager.fragments.ExpensesCategoryFragment"
+        android:label="fragment_expenses_category"
+        tools:layout="@layout/fragment_expenses_category" >
+        <action
+            android:id="@+id/action_expensesCategoryFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
     </fragment>
 </navigation>
