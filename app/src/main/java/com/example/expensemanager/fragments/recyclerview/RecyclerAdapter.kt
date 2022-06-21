@@ -13,6 +13,7 @@ import com.example.expensemanager.fragments.AddExpenseFragment
 import com.example.expensemanager.fragments.FirstFragment
 import com.example.expensemanager.fragments.FirstFragmentDirections
 import com.example.expensemanager.model.Expense
+import java.util.Collections.swap
 import java.util.stream.IntStream.range
 
 class RecyclerAdapter:
@@ -23,7 +24,7 @@ class RecyclerAdapter:
     private var totalCount = 0
     private val recyclerItems = mutableListOf<ExpensesForCategory>()
 
-    inner class ExpensesForCategory(val category: String, val amount: Int) {
+    inner class ExpensesForCategory(var category: String, var amount: Int) {
 
     }
 
@@ -84,6 +85,21 @@ class RecyclerAdapter:
                 }
             }
         }
+
+        //Sort
+        for (i:Int in recyclerItems.indices)
+            for(j:Int in 0 until (recyclerItems.size - i -1))
+                if (recyclerItems[j].amount < recyclerItems[j+1].amount){
+                    val tCategory = recyclerItems[j].category
+                    val tAmount = recyclerItems[j].amount
+                    recyclerItems[j].category = recyclerItems[j+1].category
+                    recyclerItems[j].amount = recyclerItems[j+1].amount
+                    recyclerItems[j+1].category = tCategory
+                    recyclerItems[j+1].amount = tAmount
+                }
+
+
+
 
         notifyDataSetChanged()
     }

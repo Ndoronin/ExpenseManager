@@ -58,9 +58,7 @@ class FirstFragment : Fragment(R.layout.fragment_first), AdapterView.OnItemSelec
                 total+=it.amount
             }
 
-            val totalStr = getString(R.string.totalExpense,total.toString()) +
-                    " " +getString(R.string.Currency)
-            binding.total.text = totalStr
+            binding.total.text = total.toString()
         }
 
         binding.fab.setOnClickListener {

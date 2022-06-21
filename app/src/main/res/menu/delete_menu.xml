@@ -5,6 +5,6 @@
     <item android:id="@+id/menu_delete"
         android:title="Delete"
         android:icon="@drawable/ic_baseline_delete_24"
-        android:iconTint="@color/white"
+        android:iconTint="@color/black"
         app:showAsAction="ifRoom"/>
 </menu>
